@@ -16,7 +16,7 @@
 
 name := "sbt-github-packages"
 
-ThisBuild / baseVersion := "0.5"
+ThisBuild / baseVersion := "0.6"
 
 ThisBuild / organization := "com.codecommit"
 ThisBuild / publishGithubUser := "djspiewak"
@@ -27,12 +27,21 @@ ThisBuild / sbtVersion := "1.3.3"
 
 enablePlugins(SbtPlugin)
 
-homepage := Some(url("https://github.com/djspiewak/sbt-github-packages"))
+githubOwner := "openlawteam"
+githubRepository := "sbt-github-packages"
+githubTokenSource := TokenSource.GitConfig("github.token") || TokenSource
+  .Environment("GITHUB_TOKEN")
+
+publishTo := Some(
+  "GitHub Packages Propeller Scala" at "https://maven.pkg.github.com/openlawteam/sbt-github-packages"
+)
+
+homepage := Some(url("https://github.com/openlawteam/sbt-github-packages"))
 
 scmInfo := Some(
   ScmInfo(
-    url("https://github.com/djspiewak/sbt-github-packages"),
-    "scm:git@github.com:djspiewak/sbt-github-packages.git"))
+    url("https://github.com/openlawteam/sbt-github-packages"),
+    "scm:git@github.com:openlawteam/sbt-github-packages.git"))
 
 developers := List(
   Developer(id="djspiewak", name="Daniel Spiewak", email="djspiewak@gmail.com", url=url("https://github.com/djspiewak")))
